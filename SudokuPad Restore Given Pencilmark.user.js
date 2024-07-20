@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         CTC Restore Given Pencilmark
+// @name         SudokuPad Restore Given Pencilmark
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  Adjusts the clear function for given pencilmark cells to toggle between given pencilmarks and an empty cell

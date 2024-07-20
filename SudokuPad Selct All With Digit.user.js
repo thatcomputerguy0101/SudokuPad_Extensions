@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         CTC Selct All With Digit
+// @name         SudokuPad Selct All With Digit
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  When a number is triple-clicked, select all cells that contain that number even in pencil marks. Also adds a more narrow double-click filter for colors and shifts the original logic to triple-click.

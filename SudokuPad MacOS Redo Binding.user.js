@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         CTC MacOS Redo Binding
+// @name         SudokuPad MacOS Redo Binding
 // @namespace    http://tampermonkey.net/
 // @version      0.1
-// @description  Adds the MacOS Redo binding (CMD-Shift-Z) to the CTC web app
+// @description  Adds the MacOS Redo binding (CMD-Shift-Z) to the Sven's SudokuPad
 // @author       ThatComputerGuy
 // @match        https://app.crackingthecryptic.com/sudoku/*
 // @match        https://app.crackingthecryptic.com/*

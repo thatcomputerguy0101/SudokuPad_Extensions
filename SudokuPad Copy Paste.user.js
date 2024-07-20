@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         CTC Copy Paste
+// @name         SudokuPad Copy Paste
 // @namespace    http://tampermonkey.net/
 // @version      0.1
-// @description  Adds Copy and Paste keyboard shortcuts to Sven's Sudokupad
+// @description  Adds Copy and Paste keyboard shortcuts to Sven's SudokuPad
 // @author       ThatComputerGuy
 // @match        https://app.crackingthecryptic.com/sudoku/*
 // @match        https://app.crackingthecryptic.com/*

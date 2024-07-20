@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         CTC SudokuPad Extensions
+// @name         SudokuPad Extensions
 // @namespace    http://tampermonkey.net/
 // @version      0.3
 // @description  Extension event hook for Sven's SudokuPad
