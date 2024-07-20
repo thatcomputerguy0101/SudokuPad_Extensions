@@ -37,7 +37,7 @@
     }
 
     let dispatchInitialization = () => {
-        console.log("Initializing extensions")
+//        console.log("Initializing extensions")
         document.body.dispatchEvent(new CustomEvent("appPrepared"))
     }
 
