@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         SudokuPad Copy Paste
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  Adds Copy and Paste keyboard shortcuts to Sven's SudokuPad
 // @author       ThatComputerGuy
 // @match        https://app.crackingthecryptic.com/sudoku/*
@@ -28,7 +28,7 @@
 
 /* globals App, Puzzle, Replay */
 
-(function() {
+(function () {
     'use strict';
 
     // TODO: Integrate this into the settings view
@@ -45,9 +45,9 @@
             this.currentEvent = event;
             this.updateKeys(event);
             if (this.controlPressed && event.key.toLowerCase() === 'c') {
-                this.act({type: "copy"});
+                this.act({ type: "copy" });
             } else if (this.controlPressed && event.key.toLowerCase() === 'v') {
-                this.act({type: "paste"});
+                this.act({ type: "paste" });
             } else {
                 delegateKeydown.call(this, event);
             }
@@ -70,20 +70,20 @@
         const delegateAct = Puzzle.prototype.act;
         Puzzle.prototype.act = function (action) {
             try {
-				var paction = this.parseAction(action);
-				var act = this.actionToString(paction);
-			}
-			catch (err) {
-				console.error('Puzzle.act > action parse error:', err);
-				console.info('  action:', paction);
-				return;
-			}
-			//console.info('Puzzle.act("%s");', act, action);
-			if (paction.type === 'copy') {
-				this.execCopy(); // Copy does not get saved in replay data; clipboard data is saved with paste
+                var paction = this.parseAction(action);
+                var act = this.actionToString(paction);
+            }
+            catch (err) {
+                console.error('Puzzle.act > action parse error:', err);
+                console.info('  action:', paction);
+                return;
+            }
+            //console.info('Puzzle.act("%s");', act, action);
+            if (paction.type === 'copy') {
+                this.execCopy(); // Copy does not get saved in replay data; clipboard data is saved with paste
                 this.trigger('act', act, paction);
-			}
-			else if(paction.type === 'paste') {
+            }
+            else if (paction.type === 'paste') {
                 new Promise(async () => {
                     if (paction.arg == undefined) {
                         paction.arg = await navigator.clipboard.readText();
@@ -99,7 +99,7 @@
                     }
                     this.trigger('act', act, paction);
                 })
-			}
+            }
             else {
                 // Action handled by default app
                 delegateAct.call(this, action);
@@ -108,7 +108,7 @@
 
         const delegateExec = Puzzle.prototype.exec;
         Puzzle.prototype.exec = function (action) {
-            var {type, arg} = this.parseAction(action)
+            var { type, arg } = this.parseAction(action)
             if (type == "paste") {
                 return this.execPaste(arg)
             } else {
@@ -133,7 +133,7 @@
                 // Copy selected cell values into a 2d array for processing
                 let cellData = new Array(height).fill(null).map(() => new Array(width).fill(null));
                 for (const cell of this.selectedCells) {
-                    cellData[cell.row - minRow][cell.col - minCol] = cell.value;
+                    cellData[cell.row - minRow][cell.col - minCol] = cell.given ?? cell.value;
                 }
 
                 // Convert cell data to string
@@ -179,7 +179,7 @@
                 const leftCol = Math.min(this.selectedCells.filter(cell => cell.row === topRow).map(cell => cell.col))
                 let res = false;
                 for (let row = 0, gridRow = topRow; row < pasteData.length; row++, gridRow++) {
-                    for (let col = 0, gridCol = leftCol - firstCol; col < pasteData[0].length; col++, gridCol ++) {
+                    for (let col = 0, gridCol = leftCol - firstCol; col < pasteData[0].length; col ++, gridCol ++) {
                         if (pasteData[row][col] === unselectedFill) {
                             continue;
                         } else if (pasteData[row][col] === emptyFill) {
